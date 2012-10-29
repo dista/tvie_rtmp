@@ -1,0 +1,4 @@
+rtmp server
+------------------------
+
+accpet publish streams from client, and mux it to file or push it to TVie media server
