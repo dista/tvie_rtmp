@@ -1,0 +1,33 @@
+Actor
+=========================
+RtmpServer在创建时需要传入一个创建RtmpActor的function, 该function会
+在client连接server的时候，为每个client创建一个actor, actor作为一个接口
+把收发数据的逻辑和具体业务的逻辑分离开来 
+
+server在收到client的消息时会通知actor
+现在实现的actor有livereceiveractor,
+该actor把接收到的数据保存成文件或者发送给TVieMediaServer
+
+事件有
+-------------
+*. Connect
+   Connect事件是在client发送connect的命令时通知actor的.
+   通知的时候会带上
+   app, tcUrl, type, flashVer, swfUrl这些参数
+
+*. Disconnect
+   TCP断开
+
+*. Publish
+   客户端发送publish命令
+
+*. CreateStream
+   客户端发送CreateStream命令
+
+*. MetaData
+   里面包含推送过来的流的一些metadata信息
+
+*. ReceiveStream
+   接收视频或者音频数据
+
+Actor需要的一些数据可以通过static的接口Init()传入
